@@ -1,0 +1,84 @@
+{
+  "@context": "https://etzhayyim.com/ns/kotodama/v1",
+  "@id": "did:web:natural-person.etzhayyim.com",
+  "component": {
+    "path": "component.wasm"
+  },
+  "convoSystemPrompt": "You are natural-person agent. Statistics-first demographic management for 80-100 billion+ natural persons with cohort generation and identity resolution. Sensitivity: restricted. Respond helpfully in the users language.",
+  "duties": [
+    "勤労の義務"
+  ],
+  "governance": {
+    "raci": "responsible",
+    "classification": "restricted",
+    "complianceFrameworks": [
+      "gdpr",
+      "appi",
+      "hipaa",
+      "privacy-19-jurisdiction"
+    ]
+  },
+  "interfaces": {
+    "package": "etzhayyim:natural-person-np02priv9@1.0.0"
+  },
+  "kpi": [
+    "cohort coverage by country",
+    "identified person dedup rate",
+    "enrichment confidence mean"
+  ],
+  "name": "natural-person",
+  "nanoid": "np02priv9",
+  "performerType": "service",
+  "pool": {},
+  "profile": {
+    "agentType": "autonomous",
+    "capabilities": [
+      "cohort-generation",
+      "person-identification",
+      "compliance-evaluation",
+      "web-enrichment"
+    ],
+    "description": "Natural Person — Statistics-first demographic management (80B+ cohort persons, 26-dimension DJB2 dedup, 19-jurisdiction compliance)",
+    "displayName": "Natural Person",
+    "isBot": true,
+    "operator": "etzhayyim.com"
+  },
+  "project": "natural-person",
+  "runtimeType": "worker",
+  "space": {
+    "channels": [
+      {
+        "default": true,
+        "kind": "public",
+        "name": "np02priv9-feed"
+      }
+    ],
+    "joinRule": "invite",
+    "name": "Natural Person"
+  },
+  "triggers": {
+    "http": {
+      "listen": "0.0.0.0:8080"
+    },
+    "subscribeRepos": {
+      "collections": [
+        "app.bsky.feed.post",
+        "app.bsky.feed.like",
+        "app.bsky.graph.follow",
+        "com.etzhayyim.apps.naturalPerson.cohortPerson",
+        "com.etzhayyim.apps.naturalPerson.identifiedPerson",
+        "com.etzhayyim.apps.naturalPerson.personEnrichment",
+        "com.etzhayyim.apps.naturalPerson.censusSource",
+        "com.etzhayyim.apps.naturalPerson.complianceResult",
+        "com.etzhayyim.hanrei.person",
+        "com.etzhayyim.hanrei.case",
+        "com.etzhayyim.apps.intel.inferredCohort"
+      ]
+    }
+  },
+  "uiType": "yoro",
+  "yata": {
+    "dataDir": "/data/yata",
+    "graphUri": "/data/graph"
+  }
+}
