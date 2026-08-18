@@ -1,0 +1,23 @@
+;; app-natural-person — natural-person.etzhayyim.com の edge appview。
+;;
+;; Worker は ClojureScript である。superproject CLAUDE.md の repo-wide な
+;; runtime 順序（kotoba wasm > clojurewasm > ClojureScript > nbb）に従う ——
+;; TypeScript はその順序に無い。入口を .kotoba ではなく cljs に置くのは
+;; ADR-2606290000 の判断で、kotoba の ingress capability が :native-aot /
+;; :wasm-aot とも pending だからである。判断の形をした部分は .cljc に置いて
+;; あり、ブラウザ無しにテストでき、ingress が qualify した時に最初に .kotoba
+;; へ移る部分でもある。
+{:paths ["src"]
+ :deps {io.github.kotoba-lang/jp-go-digital-design-system
+        {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
+         ;; 2026-08-18 に git で存在を確認（gh api ではない —— この workspace
+         ;; では commits API が実在する SHA に断続的に 404 を返す）。
+         :git/sha "2e2d191e9e1731ce6865c79dab163a5d74249053"}}
+ :aliases
+ {:cljs {:extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}
+                      thheller/shadow-cljs {:mvn/version "2.28.20"}}}
+  :test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}}}

@@ -1,0 +1,26 @@
+;; natural-person appview の Worker。:esm、先例は
+;; cloud-itonami-marketplace-listing と cloud-itonami/app-ongakuka。
+;;
+;; wrangler.jsonc の main は dist/worker.js を指し、それは src/ のソースから
+;; コンパイルされた **この** bundle である。それが docs/adr/0001 に記録した
+;; 移行の要点である —— 移行前は main が SvelteKit のビルド出力を指し、読み手が
+;; 開く TypeScript（src/app.ts）はどの bundle にも入っていなかった。
+;;
+;; :warnings-as-errors は飾りではない。shadow は未宣言・改名された var を
+;; WARNING として扱うので、`shadow-cljs release worker` が exit 0 のまま
+;; 最初のリクエストで壊れる bundle を書き出す。「ビルドが通った」は検査では
+;; なかった —— **落ちようが無かった**。
+{:deps {:aliases [:cljs]}
+ :builds
+ {:worker
+  {:target :esm
+   :output-dir "dist"
+   :modules {:worker {:exports {default natural-person.worker/handler}}}
+   ;; キーは :build-options ではなく **:compiler-options** に置く。shadow が
+   ;; 読むのは [:compiler-options :warnings-as-errors]
+   ;; （shadow/build/compiler.clj の should-warning-throw?）。置き場所を
+   ;; 間違えると黙って無視され、この option が防ぐはずの失敗（落ちようの無い
+   ;; 検査）そのものになる。
+   :compiler-options {:output-feature-set :es2020
+                      :infer-externs :auto
+                      :warnings-as-errors true}}}}
