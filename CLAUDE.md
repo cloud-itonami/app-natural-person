@@ -2,6 +2,24 @@
 
 **nanoid**: `np02priv9` | **DID**: `did:web:natural-person.etzhayyim.com` | **sensitivity**: `restricted` (admin-only, T0 hidden)
 
+## この repo に在るもの（2026-08-18 実測）
+
+**この repo は edge appview 1 本である。** 下に記述する Phase 1A〜Phase 2 の
+コマンド群・26 次元・19 法域を実装したコードは、ここには 1 行も無い —— それらは
+`etzhayyim/root` の BPMN 契約（`00-contracts/bpmn/com/etzhayyim/natural-person/`、
+実測 4 本）と、その先の MCP router に在る。ここに在るのは、到着した XRPC 要求を
+その router へ渡す Worker 1 本と、その配備設定だけである。
+
+| | |
+|---|---|
+| Runtime | **ClojureScript**（`src/natural_person/worker.cljs` → shadow-cljs `:esm` → `dist/worker.js`、`"runtimeType": "worker"`） |
+| Frontend | `src/natural_person/view.cljc`（jp-go-dds の hiccup、SSR 1 枚）。**Svelte は使わない** —— 2026-08-18 の移行で撤去済みで、client 側の層を足す場合も cljs で書く（superproject の skill `kotoba-uiux`） |
+| 正本言語 | cljs / kotoba。**TypeScript ではない**（superproject CLAUDE.md の runtime 順序） |
+
+2026-08-18 に TypeScript/Svelte から ClojureScript へ移行した（`docs/adr/0001`）。
+下の「Write Path」が言う `TS host` は**上流エンジン側のホスト**であって、この
+repo の appview のことではない。
+
 ## Architecture: Statistics-First -> Identity-Later
 
 80-100 billion+ の自然人を統計ベースで管理。個別 PII は Phase 2 で後から紐付け。
