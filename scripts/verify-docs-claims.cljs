@@ -17,7 +17,7 @@
          '["node:child_process" :as cp]
          '["node:crypto" :as crypto]
          '[cljs.reader :as reader]
-         '[clojure.string :as str])
+         '[kotoba.lang.text :as str])
 
 (def root (or (first (remove #(str/starts-with? % "--") *command-line-args*)) "."))
 (def APP "appview/etzhayyim-wasm-natural-person-np02priv9")
@@ -143,7 +143,7 @@
           (check! :declared-vars (:declared-vars claims) (count (get j "vars")))
           (check! :declared-routes (:declared-routes claims) (count (get j "routes")))
           (check! :app-framework-not-sveltekit true
-                  (not (str/includes? (str/lower-case (str (get-in j ["vars" "APP_FRAMEWORK"]))) "svelte")))
+                  (not (str/includes? (str/lower (str (get-in j ["vars" "APP_FRAMEWORK"]))) "svelte")))
           ;; 旧設定は今は存在しない SvelteKit の client dir を配っていた
           (check! :no-stale-assets-binding true (nil? (get j "assets")))
           (check! :sveltekit-compat-flags (:sveltekit-compat-flags claims)
