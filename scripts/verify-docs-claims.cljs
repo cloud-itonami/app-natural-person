@@ -23,7 +23,7 @@
 (def APP "appview/etzhayyim-wasm-natural-person-np02priv9")
 
 (def claims
-  {:tracked-files 18
+  {:tracked-files 19
    :inherited-bytes 3358            ; 継承した 4 ファイルを 1 バイトも変えずに持っている
    :svelte-artifacts 0              ; .svelte / svelte.config / svelte/ ディレクトリ が 1 つも無い
    :sveltekit-compat-flags 0        ; nodejs_compat / nodejs_als は adapter-cloudflare のものだった
