@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; verify-docs-claims — README.md と docs/operator-quickstart.md が述べる数値・
 ;; 存在・不在を tree から再計算し、prose と tree が食い違ったら落ちる。
 ;;
@@ -8,7 +8,7 @@
 ;; **閉じたこと** を主張する。しかも黙って戻れないように書く —— TypeScript は
 ;; 「バイト合計に現れない」ではなく **名指しで不在** を検査する。
 ;;
-;; Usage:  nbb scripts/verify-docs-claims.cljk [<dir>]     (<dir> を **先頭** に。既定 ".")
+;; Usage:  kbb --backend sci scripts/verify-docs-claims.cljk [<dir>]     (<dir> を **先頭** に。既定 ".")
 ;;   多くの gate が (first (remove #(str/starts-with? % "--") argv)) で tree を
 ;;   決めるので、`--flag <dir>` の順で書くとフラグの値が tree のパスになる。
 ;; Exit:   0 全 claim が成立 · 1 claim が偽 · 2 答えられなかった
