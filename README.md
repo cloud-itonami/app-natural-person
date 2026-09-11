@@ -9,7 +9,7 @@ XRPC 要求を MCP router へ中継する Worker 1 本と、その配備設定�
 ここに実装を探しに来た読み手が最初に必要とするのはこの事実なので、名乗りの直後に置く。
 
 **2026-08-19 に TypeScript/Svelte から ClojureScript へ移行した**（`docs/adr/0001`）。
-数字はすべて `scripts/verify-docs-claims.cljs` が tree から再計算して検査する。
+数字はすべて `scripts/verify-docs-claims.cljk` が tree から再計算して検査する。
 
 | | |
 |---|---|
@@ -27,9 +27,9 @@ XRPC 要求を MCP router へ中継する Worker 1 本と、その配備設定�
 ## deploy されるものは、いま読んでいるソースである
 
 ```
-src/natural_person/route.cljc    判断（どの handler が答えるか）  ← 純 .cljc、テスト対象
-src/natural_person/view.cljc     ページ（jp-go-dds の hiccup）    ← 純 .cljc、テスト対象
-src/natural_person/worker.cljs   Request/Response に触る唯一の層
+src/natural_person/route.cljk    判断（どの handler が答えるか）  ← 純 .cljc、テスト対象
+src/natural_person/view.cljk     ページ（jp-go-dds の hiccup）    ← 純 .cljc、テスト対象
+src/natural_person/worker.cljk   Request/Response に触る唯一の層
         ↓ shadow-cljs :target :esm
 dist/worker.js                   ← wrangler.jsonc の "main" が指すもの
 ```
@@ -40,7 +40,7 @@ dist/worker.js                   ← wrangler.jsonc の "main" が指すもの
 配備側はどちらも持たない）。**`src/app.ts` を読んで得た理解は本番に対して誤りだった。**
 
 いまは `main` が指す bundle が上のソースからコンパイルされたものなので、その形は構造的に
-起こり得ない。`scripts/verify-docs-claims.cljs` が **shadow の出力先と wrangler の `main` と
+起こり得ない。`scripts/verify-docs-claims.cljk` が **shadow の出力先と wrangler の `main` と
 export の ns 名の 3 つが噛み合っていること**を検査し、噛み合わなくなれば落ちる。
 
 判断を `.cljc` に置いてあるのは、ブラウザもビルドも無しにテストするためであり、ingress
@@ -99,7 +99,7 @@ cljs に置くのは ADR-2606290000 の判断）。
 | 面 | ファイル |
 |---|---|
 | 判断・描画・edge | `src/natural_person/{route.cljc, view.cljc, worker.cljs}` |
-| テスト | `test/natural_person/route_test.cljc`（5 tests / 27 assertions） |
+| テスト | `test/natural_person/route_test.cljk`（5 tests / 27 assertions） |
 | ビルド | `deps.edn` / `shadow-cljs.edn` / `.gitignore` |
 | 検査 | `scripts/{smoke-worker.cljs, verify-docs-claims.cljs}` |
 | Worker 設定 | `appview/…/wrangler.jsonc` |
@@ -243,7 +243,7 @@ README.md と operator-quickstart.md が入った時点で）。継承した cus
 ## 検証
 
 ```bash
-npx --yes nbb scripts/verify-docs-claims.cljs .          # <dir> は先頭に置く
+npx --yes nbb scripts/verify-docs-claims.cljk .          # <dir> は先頭に置く
 ```
 
 exit 0 = 全一致 / 1 = 食い違い / **2 = 判定できなかった**（0 と区別する）。

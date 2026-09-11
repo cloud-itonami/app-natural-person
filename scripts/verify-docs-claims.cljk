@@ -8,7 +8,7 @@
 ;; **閉じたこと** を主張する。しかも黙って戻れないように書く —— TypeScript は
 ;; 「バイト合計に現れない」ではなく **名指しで不在** を検査する。
 ;;
-;; Usage:  nbb scripts/verify-docs-claims.cljs [<dir>]     (<dir> を **先頭** に。既定 ".")
+;; Usage:  nbb scripts/verify-docs-claims.cljk [<dir>]     (<dir> を **先頭** に。既定 ".")
 ;;   多くの gate が (first (remove #(str/starts-with? % "--") argv)) で tree を
 ;;   決めるので、`--flag <dir>` の順で書くとフラグの値が tree のパスになる。
 ;; Exit:   0 全 claim が成立 · 1 claim が偽 · 2 答えられなかった
@@ -164,8 +164,8 @@
     ;; ことだった。構造で検査し、**部分文字列の禁止では検査しない**: 禁止形は
     ;; 旧欠陥を説明する docstring に当たってしまう。コメントで落ちる検査は
     ;; コードではなく散文についての検査である。
-    (let [v (slurp* "src/natural_person/view.cljc")
-          w (slurp* "src/natural_person/worker.cljs")]
+    (let [v (slurp* "src/natural_person/view.cljk")
+          w (slurp* "src/natural_person/worker.cljk")]
       (if (or (nil? v) (nil? w))
         (undet! "view.cljc or worker.cljs unreadable")
         (check! :page-renders-route-table true
