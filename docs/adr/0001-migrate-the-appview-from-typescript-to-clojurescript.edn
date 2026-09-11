@@ -124,7 +124,7 @@ ADR-2606290000 の判断で、kotoba の ingress capability が `:native-aot` /
   CLI 自身が「10 軸を採点した / input-zoom と contrast は採点していない」と
   出力に書く。デザインシステムを完全に外しても 96.63 で PASS することが
   上流で実測されている。
-- `shadow-cljs release worker`: **55 files / 12 compiled / 0 warnings / 9.27s**、
+- `amu compile --target wasm32-browser worker`: **55 files / 12 compiled / 0 warnings / 9.27s**、
   `dist/worker.js` 245,741 バイト。
 - `scripts/smoke-worker.cljk`: ビルド済み bundle を import して **17 項目** PASS。
 - `scripts/verify-docs-claims.cljk`: 全 claim PASS。

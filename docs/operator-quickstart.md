@@ -27,7 +27,7 @@ repo 直下で行う** —— `shadow-cljs.edn` と `deps.edn` はここに在�
 ## 1. 書いてあることが本当か検査する
 
 ```bash
-npx --yes nbb scripts/verify-docs-claims.cljk .
+npx --yes kbb --backend sci scripts/verify-docs-claims.cljk .
 ```
 
 実際の出力（末尾）:
@@ -69,7 +69,7 @@ cat > /tmp/run.cljs <<'EOF'
 (require '[cljs.test :refer [run-tests]] 'natural-person.route-test)
 (run-tests 'natural-person.route-test)
 EOF
-npx --yes nbb --classpath "$CP" /tmp/run.cljs
+npx --yes kbb --backend sci --classpath "$CP" /tmp/run.cljs
 ```
 
 実際の出力:
@@ -102,9 +102,9 @@ cat > /tmp/render.cljs <<'EOF'
                   :mcp-url "https://mcp.etzhayyim.com/xrpc/com.etzhayyim.mcp.message"}))
   (println "ok"))
 EOF
-DDS="$K/jp-go-digital-design-system" npx --yes nbb --classpath "$CP" /tmp/render.cljs
+DDS="$K/jp-go-digital-design-system" npx --yes kbb --backend sci --classpath "$CP" /tmp/render.cljs
 
-cd $K/design-quality && npx --yes nbb -m design-quality.cli score /tmp/np-page.html --min 95
+cd $K/design-quality && npx --yes kbb --backend sci -m design-quality.cli score /tmp/np-page.html --min 95
 ```
 
 実際の出力（末尾）:
@@ -134,7 +134,7 @@ governor）。直接叩かず、必ず guard 経由で:
 ```bash
 cd "$REPO"
 node ~/github/com-junkawasaki/scripts/resource-guard.mjs run build -- \
-  npx --yes shadow-cljs release worker
+  npx --yes amu compile --target wasm32-browser worker
 ls -la dist/worker.js
 ```
 
@@ -189,7 +189,7 @@ sha256           1a916de26087b68543006c31e7085babb794a293d5e7b2e13bb32a956bd3892
 ここが deploy されるものに触る唯一の検査である。
 
 ```bash
-cd "$REPO" && npx --yes nbb scripts/smoke-worker.cljk dist/worker.js
+cd "$REPO" && npx --yes kbb --backend sci scripts/smoke-worker.cljk dist/worker.js
 ```
 
 実際の出力:
@@ -218,7 +218,7 @@ OK	the built bundle answers as the route table says
 **bundle が無ければ exit 2**（「判定できなかった」であって合格ではない）:
 
 ```
-$ npx --yes nbb scripts/smoke-worker.cljk dist/does-not-exist.js
+$ npx --yes kbb --backend sci scripts/smoke-worker.cljk dist/does-not-exist.js
 UNDETERMINED	no bundle at /…/dist/does-not-exist.js
 Refusing to report a pass: build it first (see docs/operator-quickstart.md S4).
 $ echo $?

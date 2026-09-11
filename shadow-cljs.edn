@@ -7,7 +7,7 @@
 ;; 開く TypeScript（src/app.ts）はどの bundle にも入っていなかった。
 ;;
 ;; :warnings-as-errors は飾りではない。shadow は未宣言・改名された var を
-;; WARNING として扱うので、`shadow-cljs release worker` が exit 0 のまま
+;; WARNING として扱うので、`amu compile --target wasm32-browser worker` が exit 0 のまま
 ;; 最初のリクエストで壊れる bundle を書き出す。「ビルドが通った」は検査では
 ;; なかった —— **落ちようが無かった**。
 {:deps {:aliases [:cljs]}
