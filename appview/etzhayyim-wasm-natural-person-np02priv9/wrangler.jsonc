@@ -1,6 +1,6 @@
 {
   "name": "kotodama-np02priv9",
-  // Compiled from src/natural_person/worker.cljs by shadow-cljs (:target :esm).
+  // Compiled from src/natural_person/worker.cljk by shadow-cljs (:target :esm).
   // Before the cljs migration this pointed at a SvelteKit build output
   // (svelte/.svelte-kit/cloudflare/_worker.js), and the TypeScript a reader
   // opened (src/app.ts) was in no bundle at all -- see docs/adr/0001.

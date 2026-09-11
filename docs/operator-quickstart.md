@@ -27,7 +27,7 @@ repo 直下で行う** —— `shadow-cljs.edn` と `deps.edn` はここに在�
 ## 1. 書いてあることが本当か検査する
 
 ```bash
-npx --yes nbb scripts/verify-docs-claims.cljs .
+npx --yes nbb scripts/verify-docs-claims.cljk .
 ```
 
 実際の出力（末尾）:
@@ -160,12 +160,12 @@ sha256           1a916de26087b68543006c31e7085babb794a293d5e7b2e13bb32a956bd3892
 リクエストで壊れる bundle を書いていた ——「ビルドが通った」は検査ではなかった
 （**落ちようが無かった**）。
 
-この repo で実際に落として確かめた。`src/natural_person/worker.cljs:109` の
+この repo で実際に落として確かめた。`src/natural_person/worker.cljk:109` の
 `route/dispatch` を、存在しない `route/dispatch-nonexistent` に改名して再ビルドする:
 
 ```
 ------ ERROR -------------------------------------------------------------------
- File: /private/tmp/app-natural-person-cljs/src/natural_person/worker.cljs:109:44
+ File: /private/tmp/app-natural-person-cljs/src/natural_person/worker.cljk:109:44
 ```
 
 | | exit | `dist/worker.js` sha256 |
@@ -189,7 +189,7 @@ sha256           1a916de26087b68543006c31e7085babb794a293d5e7b2e13bb32a956bd3892
 ここが deploy されるものに触る唯一の検査である。
 
 ```bash
-cd "$REPO" && npx --yes nbb scripts/smoke-worker.cljs dist/worker.js
+cd "$REPO" && npx --yes nbb scripts/smoke-worker.cljk dist/worker.js
 ```
 
 実際の出力:
@@ -218,7 +218,7 @@ OK	the built bundle answers as the route table says
 **bundle が無ければ exit 2**（「判定できなかった」であって合格ではない）:
 
 ```
-$ npx --yes nbb scripts/smoke-worker.cljs dist/does-not-exist.js
+$ npx --yes nbb scripts/smoke-worker.cljk dist/does-not-exist.js
 UNDETERMINED	no bundle at /…/dist/does-not-exist.js
 Refusing to report a pass: build it first (see docs/operator-quickstart.md S4).
 $ echo $?
