@@ -35,7 +35,7 @@
    :shadow-output-dir "dist"
    :shadow-export "natural-person.worker/handler"})
 
-;; 移行が **1 バイトも変えていない** 継承ファイル。wrangler.jsonc と CLAUDE.md は
+;; 移行が **1 バイトも変えていない** 継承ファイル。wrangler.jsonc と AGENTS.md は
 ;; 意図的に変更したのでこの集合から外し、代わりに **内容で** 検査する（意図的な
 ;; 変更と勝手な変更を区別するため）。
 (def preserved
@@ -110,10 +110,10 @@
                                 (str/includes? % "/svelte/"))
                            files)))
 
-    ;; CLAUDE.md はもう Svelte frontend を計画せず、runtime を cljs と述べる
-    (let [c (slurp* "CLAUDE.md")]
+    ;; AGENTS.md はもう Svelte frontend を計画せず、runtime を cljs と述べる
+    (let [c (slurp* "AGENTS.md")]
       (if (nil? c)
-        (undet! "CLAUDE.md unreadable")
+        (undet! "AGENTS.md unreadable")
         (check! :claude-md-describes-cljs true
                 (and (str/includes? c "shadow-cljs")
                      (str/includes? c "ClojureScript")

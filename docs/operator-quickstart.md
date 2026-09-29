@@ -128,7 +128,7 @@ gate: aggregate 100.00 >= min 95.00 -> PASS
 
 ## 4. bundle をビルドする
 
-**高負荷ビルドは同時 1 本に制限されている**（superproject `CLAUDE.md` の resource
+**高負荷ビルドは同時 1 本に制限されている**（superproject `AGENTS.md` の resource
 governor）。直接叩かず、必ず guard 経由で:
 
 ```bash
@@ -315,5 +315,5 @@ superproject の規約として、本番 deploy は `origin/main` を包含し�
 全 route が期待どおり答えること、route が表と一致すること、上流が引けないこと。
 
 **分からないこと**: XRPC のドメイン挙動。上流 MCP router が不在なので、`getPerson` などが
-**何を返すべきか**はこの手順では一切検証できない。CLAUDE.md が記述するコホート生成・
+**何を返すべきか**はこの手順では一切検証できない。AGENTS.md が記述するコホート生成・
 compliance 評価はこの repo の外に在り、ここから叩いて確かめる方法は今は無い。

@@ -1,6 +1,6 @@
 ;; app-natural-person — natural-person.etzhayyim.com の edge appview。
 ;;
-;; Worker は ClojureScript である。superproject CLAUDE.md の repo-wide な
+;; Worker は ClojureScript である。superproject AGENTS.md の repo-wide な
 ;; runtime 順序（kotoba wasm > clojurewasm > ClojureScript > nbb）に従う ——
 ;; TypeScript はその順序に無い。入口を .kotoba ではなく cljs に置くのは
 ;; ADR-2606290000 の判断で、kotoba の ingress capability が :native-aot /

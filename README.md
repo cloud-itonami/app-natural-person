@@ -4,8 +4,8 @@
 コホート生成・人物同定・法域別 compliance 評価そのものは**ここには無い** —— ここに在るのは、
 XRPC 要求を MCP router へ中継する Worker 1 本と、その配備設定である。
 
-`CLAUDE.md` は Phase 1A〜Phase 2 の約 20 コマンド・26 次元・19 法域を記述しているが、
-**それらを実装したコードはこの repo に 1 行も含まれていない。** CLAUDE.md を読んで
+`AGENTS.md` は Phase 1A〜Phase 2 の約 20 コマンド・26 次元・19 法域を記述しているが、
+**それらを実装したコードはこの repo に 1 行も含まれていない。** AGENTS.md を読んで
 ここに実装を探しに来た読み手が最初に必要とするのはこの事実なので、名乗りの直後に置く。
 
 **2026-08-19 に TypeScript/Svelte から ClojureScript へ移行した**（`docs/adr/0001`）。
@@ -104,7 +104,7 @@ cljs に置くのは ADR-2606290000 の判断）。
 | 検査 | `scripts/{smoke-worker.cljs, verify-docs-claims.cljs}` |
 | Worker 設定 | `appview/…/wrangler.jsonc` |
 | actor 記述子 | `appview/…/kotodama.jsonld` |
-| 設計 | `CLAUDE.md` |
+| 設計 | `AGENTS.md` |
 | 由来・権利・識別 | `NOTICE` / `README.edn` / `migration.edn` |
 | 文書 | `README.md` / `docs/operator-quickstart.md` / `docs/adr/0001-*.edn` |
 
@@ -181,7 +181,7 @@ option 無しで出荷された bundle は、最初のリクエストで
 | `np02priv9.etzhayyim.com` | 同（nanoid 側） | **NXDOMAIN** |
 | `mcp.etzhayyim.com` | `/xrpc/:nsid` の中継先 | **NXDOMAIN** |
 | `dispatcher.etzhayyim.com` | 旧 `src/app.ts` の中継先（持ち越さず） | **NXDOMAIN** |
-| `site.etzhayyim.com` | CLAUDE.md の web enrichment 経路 | **NXDOMAIN** |
+| `site.etzhayyim.com` | AGENTS.md の web enrichment 経路 | **NXDOMAIN** |
 | `etzhayyim.com` | apex | `172.67.179.128` / `104.21.51.111`（`/.well-known/did.json` 200） |
 
 **apex は生きている**ので did:web の仕組み自体は機能している。対照に `kotobase.net` も
@@ -198,7 +198,7 @@ option 無しで出荷された bundle は、最初のリクエストで
   計 3,358 バイト）は**いまも 1 バイトも変わっていない**（sha256 を検証器に固定）
 - `wrangler.jsonc` は**意図的に変更**した（`main` の付け替え、消えた SvelteKit client を
   指す `assets` の撤去、`compatibility_flags` の撤去、`APP_FRAMEWORK` の更新）
-- `CLAUDE.md` も**意図的に変更**した（この repo の runtime が cljs であることを冒頭に
+- `AGENTS.md` も**意図的に変更**した（この repo の runtime が cljs であることを冒頭に
   足した）。この 2 つは byte 一致集合から外し、**内容で検査する** —— 意図的な変更と
   勝手な変更を区別するため
 - TypeScript/Svelte の 8 ファイルは**移行で撤去**した
@@ -233,8 +233,8 @@ README.md と operator-quickstart.md が入った時点で）。継承した cus
    1 つも無い。** `wrangler.jsonc` の `rules`（`CompiledWasm` glob）も併せて「WASM
    component が在る」と読ませるが、無い。**移行前から inert** で、移行はそれを真にも
    偽にもしないので `rules` は**残した**（撤去は別の決定）。
-3. **CLAUDE.md の約 20 コマンドに対し、上流の BPMN は 4 本だけ**（`origin/main` で実測）。
-   うち CLAUDE.md に載るのは `generateCohortBatch` の 1 本で、残る 3 本
+3. **AGENTS.md の約 20 コマンドに対し、上流の BPMN は 4 本だけ**（`origin/main` で実測）。
+   うち AGENTS.md に載るのは `generateCohortBatch` の 1 本で、残る 3 本
    （`materializeAllLatentEntities` / `reconcileVisibility` / `seedLatentEntities`）は
    記載が無い。どちらの側が現在地なのかは、この repo からは判定できない。
 4. **ホストが解決しない**（上記）。移行はそれを直さない。deploy するか retire するかは
