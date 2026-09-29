@@ -33,7 +33,7 @@
    理解は本番に対して誤りになる。**
 
 候補は 2 つとも TypeScript なので、どちらを正本に選んでも正本には着地しない。
-superproject CLAUDE.md の runtime 順序は kotoba wasm > clojurewasm >
+superproject AGENTS.md の runtime 順序は kotoba wasm > clojurewasm >
 ClojureScript > nbb で、**TypeScript はその順序に無い。**
 
 ## Decision
@@ -177,7 +177,7 @@ option 無しで出荷された bundle は、最初のリクエストで
   場合を別々の claim が捕まえる。
 - 継承した 4 ファイル（`NOTICE` / `README.edn` / `migration.edn` /
   `kotodama.jsonld`）は 1 バイトも変わっていない（sha256 を検証器に固定）。
-  `wrangler.jsonc` と `CLAUDE.md` だけは**意図的に変更**し、内容で検査する。
+  `wrangler.jsonc` と `AGENTS.md` だけは**意図的に変更**し、内容で検査する。
 - `compatibility_flags`（`nodejs_compat` / `nodejs_als`）を撤去した。これは
   SvelteKit の adapter-cloudflare が要求していたもので、cljs の `:esm` bundle
   には要らない。**憶測で消さず、flags 無しの設定のまま実 workerd で全 route を

@@ -14,7 +14,7 @@
 |---|---|
 | Runtime | **ClojureScript**（`src/natural_person/worker.cljk` → shadow-cljs `:esm` → `dist/worker.js`、`"runtimeType": "worker"`） |
 | Frontend | `src/natural_person/view.cljk`（jp-go-dds の hiccup、SSR 1 枚）。**Svelte は使わない** —— 2026-08-18 の移行で撤去済みで、client 側の層を足す場合も cljs で書く（superproject の skill `kotoba-uiux`） |
-| 正本言語 | cljs / kotoba。**TypeScript ではない**（superproject CLAUDE.md の runtime 順序） |
+| 正本言語 | cljs / kotoba。**TypeScript ではない**（superproject AGENTS.md の runtime 順序） |
 
 2026-08-18 に TypeScript/Svelte から ClojureScript へ移行した（`docs/adr/0001`）。
 下の「Write Path」が言う `TS host` は**上流エンジン側のホスト**であって、この
